@@ -90,8 +90,6 @@ window.onload = function(){
         end = function(){ /*ends*/
             if(this.oy > 319 && this.attr("cy") < 180){
                 for (i = 0; i < 16; i++) { 
-                    console.log(redcirclegrid);
-                    console.log(grcirclegrid);
                     if(redcirclegrid[i].placeh==0){
                         this.attr({cx: redcirclegrid[i].cx, cy: redcirclegrid[i].cy});
                         this.animate({"fill": "red"});
