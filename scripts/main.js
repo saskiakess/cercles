@@ -1,3 +1,5 @@
+// For review 
+
 
 window.onload = function(){
 
@@ -5,7 +7,7 @@ window.onload = function(){
     // Draw the interface (rectangle, lines and texts)
 
     var p = Raphael("paper", 800, 800)
-        
+
     var xmax = 600;
     var ymax = 500;
     var compteur = 0;
@@ -33,6 +35,44 @@ window.onload = function(){
         .attr({
             "font-size" : 32
         });
+
+
+    // Draw the reset button 
+
+    p.setStart();
+
+            p.rect(610, 10, 100, 30, 1)
+                .attr({
+                    fill: "#3498db", 
+                    stroke : 1, 
+                    cursor : "pointer"
+                });
+            p.text(660,25,"Recommencer")
+                .attr({
+                    fill: "white",
+                    "font-size": 13, 
+                    "font-weight": "bold", 
+                    cursor : "pointer"
+                });
+
+    var resetbtn = p.setFinish();
+
+
+    // Define reset function
+
+    resetbtn.click(function () {
+        for (i = 0; i < 16; i++) { 
+            redcirclegrid[i].placeh = 0;
+            grcirclegrid[i].placeh = 1;
+            circlenames[i].attr({
+                cx: grcirclegrid[i].cx, 
+                cy: grcirclegrid[i].cy})
+                .animate({"fill": "#539680"});
+        };
+        compteur = 0;
+        compteurTxt.attr("text", compteur);
+    });
+
 
 
     // Draw the circles and grid for placement
@@ -69,6 +109,7 @@ window.onload = function(){
     };
 
 
+
     // Drag and drop
 
     var move = function(dx, dy){ /*move*/
@@ -89,8 +130,6 @@ window.onload = function(){
         end = function(){ /*ends*/
             if(this.oy > 319 && this.attr("cy") < 180){
                 for (i = 0; i < 16; i++) { 
-                    console.log(redcirclegrid);
-                    console.log(grcirclegrid);
                     if(redcirclegrid[i].placeh==0){
                         this.attr({cx: redcirclegrid[i].cx, cy: redcirclegrid[i].cy});
                         this.animate({"fill": "red"});
